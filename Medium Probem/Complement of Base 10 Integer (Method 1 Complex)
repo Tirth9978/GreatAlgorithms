@@ -5,23 +5,18 @@
     Explanation: 5 is "101" in binary, with complement "010" in binary, which is 2 in base-10.
 
 --> Code : 
-    class Solution {
-    public:
-        int bitwiseComplement(int n) {
-            int ans = 0;
-            if (n != 0){
-                for (int i=1;n !=0;i=i*2){
-                    int bit =(n & 1);
-                    if (bit == 0){
-                        ans =ans + i * 1;
-                    }
-                    n = n>> 1;
+        class Solution {
+        public:
+            int bitwiseComplement(int n) {
+                if (n == 0){
+                    return 1;
                 }
-                return ans;
+                int m = n;
+                int mask = 0;
+                while (m != 0){
+                    mask = (mask<<1) | 1;
+                    m = m >> 1;
+                }
+                return (~n) & mask;
             }
-            else {
-                return 1;
-            }
-            
-        }
-    };
+        };
