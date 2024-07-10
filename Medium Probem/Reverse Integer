@@ -10,7 +10,7 @@
             int ans = 0;
             while (x != 0){
                 int dig = x % 10;
-                if ((ans < INT_MIN/10) || (ans > INT_MAX/10)){
+                if ((ans < INT_MIN/10) || (ans > INT_MAX/10)){         //(Divided By Ten Is main thing in this problem)
                     return 0;
                 }
                 ans = dig + (10 * ans);
