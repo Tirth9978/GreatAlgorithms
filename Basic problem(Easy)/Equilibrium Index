@@ -18,7 +18,7 @@
           Explanation:
           There is no index that satisfies the conditions in the problem statement.
 
---> Code : 
+--> Code 1 : 
       class Solution {
       public:
           int pivotIndex(vector<int>& nums) {
@@ -39,3 +39,23 @@
               return -1;
           }
       };
+
+
+--> Code 2 : 
+    class Solution {
+    public:
+        int pivotIndex(vector<int>& nums) {
+            int sum = 0;
+            for (int i=0;i<nums.size();i++){
+                sum += nums[i];
+            }
+            int leftsum = 0 ;
+            for (int i=0;i<nums.size();i++){
+                sum -= nums[i];
+                if (sum == leftsum){
+                    return i;
+                }
+                leftsum += nums[i];
+            }return -1;
+        }
+    };
