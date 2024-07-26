@@ -1,0 +1,37 @@
+--> A phrase is a palindrome if, after converting all uppercase letters into lowercase letters and removing all non-alphanumeric characters, it reads the same forward and backward. Alphanumeric characters include letters and numbers.
+    Given a string s, return true if it is a palindrome, or false otherwise.
+
+--> Ex 1 : 
+    Input: s = "A man, a plan, a canal: Panama"
+    Output: true
+    Explanation: "amanaplanacanalpanama" is a palindrome.
+
+--> Ex 2 : 
+    Input: s = "race a car"
+    Output: false
+    Explanation: "raceacar" is not a palindrome.
+
+--> Code : 
+    class Solution {
+    public:
+        int chake(string s,int i){
+            if ((s[i] >= 'a' && s[i]<='z') || (s[i]>='A' && s[i]<='Z') ||  (s[i] >='0' && s[i] <='9') ){return 1;}
+            else {return 0;}
+        }
+        bool isPalindrome(string s) {
+            string str = "";
+            for (int i=0;s[i]!='\0';i++){
+                if (chake(s,i)==1){
+                    str.push_back(s[i]);
+                }
+            }
+            for (int i=0;str[i]!='\0';i++){
+                str[i] = tolower(str[i]);
+            }
+            int start = 0;
+            int end = str.size()-1;
+            while(start < end){
+                if (str[start] != str[end]){return false;}start++;end--;
+            }return true;
+        }
+    };
