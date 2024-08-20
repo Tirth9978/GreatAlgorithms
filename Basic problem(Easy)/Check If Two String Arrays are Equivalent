@@ -1,0 +1,40 @@
+-->Given two string arrays word1 and word2, return true if the two arrays represent the same string, and false otherwise.
+    A string is represented by an array if the array elements concatenated in order forms the string.
+
+--> Ex 1 : 
+    Input: word1 = ["ab", "c"], word2 = ["a", "bc"]
+    Output: true
+    Explanation:
+    word1 represents string "ab" + "c" -> "abc"
+    word2 represents string "a" + "bc" -> "abc"
+    The strings are the same, so return true.
+
+--> Ex 2 : 
+    Input: word1 = ["a", "cb"], word2 = ["ab", "c"]
+    Output: false
+
+--> Code : 
+    class Solution {
+    public:
+        bool arrayStringsAreEqual(vector<string>& word1, vector<string>& word2) {
+            int i=0;
+            string ans1 = "";
+            while(i < word1.size()){
+                string str = word1[i];
+                ans1 = ans1 + str;
+                i++;
+            }
+            i = 0;
+            string ans2 = "";
+            while(i < word2.size()){
+                string str = word2[i];
+                ans2 = ans2 + str;
+                i++;
+            }
+            if (ans2 == ans1){
+                return 1;
+            }else {
+                return 0;
+            }
+        }
+    };
