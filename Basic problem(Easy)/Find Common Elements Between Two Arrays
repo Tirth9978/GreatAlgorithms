@@ -1,0 +1,39 @@
+-->You are given two integer arrays nums1 and nums2 of sizes n and m, respectively. Calculate the following values:
+    answer1 : the number of indices i such that nums1[i] exists in nums2.
+    answer2 : the number of indices i such that nums2[i] exists in nums1.
+    Return [answer1,answer2].
+
+--> Ex 1 :
+    Input: nums1 = [2,3,2], nums2 = [1,2]
+    
+    Output: [2,1]
+
+--> COde : 
+    class Solution {
+    public:
+        vector<int> findIntersectionValues(vector<int>& nums1, vector<int>& nums2) {
+            int count1 = 0;
+            int count2 = 0;
+            vector<int> ans(2);
+            for (int i=0;i<nums1.size();i++){
+                for (int j=0;j<nums2.size();j++){
+                    if (nums1[i] == nums2[j]){
+                        count1 ++;
+                        break;
+                    }
+                }
+            }
+    
+            for (int i=0;i<nums2.size();i++){
+                for (int j=0;j<nums1.size();j++){
+                    if (nums2[i] == nums1[j]){
+                        count2 ++;
+                        break;
+                    }
+                }
+            }
+            ans[0] = count1;
+            ans[1] = count2;
+            return ans;
+        }
+    };
