@@ -31,3 +31,58 @@
             return NULL;
         }
     };
+
+--> Code 2 : 
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode(int x) : val(x), next(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    bool  find(ListNode * head){
+
+        map<ListNode * , bool> visited;
+        ListNode * temp = head;
+        while(temp != NULL){
+            if (visited[temp] == 1){
+                return 1;
+            }
+            visited[temp] = 1;
+            temp = temp -> next;
+        }
+        return 0;
+
+    }
+
+    ListNode * ans(ListNode * head){
+
+        ListNode * slow = head;
+        ListNode * fast = head;
+
+        while(slow != fast) {
+            slow = slow -> next;
+            fast = fast -> next;
+            fast = fast -> next;
+        }
+        slow = head;
+
+        while(fast != slow){
+            slow = slow -> next;
+            fast = fast -> next;
+        }
+        return slow ;
+
+    }
+
+    ListNode *detectCycle(ListNode *head) {
+        if (!find(head)){
+
+            return NULL;
+        }
+        return ans(head);
+    }
+};
