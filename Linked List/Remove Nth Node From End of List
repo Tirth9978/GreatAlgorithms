@@ -1,0 +1,53 @@
+-->Given the head of a linked list, remove the nth node from the end of the list and return its head.
+-->Ex 1:
+    Input: head = [1,2,3,4,5], n = 2
+    Output: [1,2,3,5]
+
+-->Ex 2 : 
+    Input: head = [1], n = 1
+    Output: []
+
+--> Code : 
+    /**
+     * Definition for singly-linked list.
+     * struct ListNode {
+     *     int val;
+     *     ListNode *next;
+     *     ListNode() : val(0), next(nullptr) {}
+     *     ListNode(int x) : val(x), next(nullptr) {}
+     *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+     * };
+     */
+    class Solution {
+    public:
+        int len(ListNode * head){
+            int count =0;
+            while(head != NULL){
+                head = head -> next;
+                count ++;
+            }
+            return count ;
+        }
+        ListNode* removeNthFromEnd(ListNode* head, int n) {
+            if (head -> next == NULL && n == 1){
+                return NULL;
+            }
+            if (head -> next -> next == NULL && n == 2){
+                ListNode* temp = new ListNode(head->next -> val);
+                return temp;
+            }
+            n = len(head) - n;
+            if (n == 0){
+                return head->next;
+            }
+            int i =1;
+            ListNode * temp = head;
+            while(i != n ){
+                i++;
+                head = head -> next;
+                
+            }
+            head->next = head -> next -> next ;
+            return temp;
+        }
+    };
