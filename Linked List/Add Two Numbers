@@ -6,7 +6,7 @@
     Output: [7,0,8]
     Explanation: 342 + 465 = 807.
 
---> Code : 
+--> Code 1: 
     /**
      * Definition for singly-linked list.
      * struct ListNode {
@@ -80,3 +80,62 @@
             return head;
         }
     };
+
+--> Code 2 : 
+        /**
+         * Definition for singly-linked list.
+         * struct ListNode {
+         *     int val;
+         *     ListNode *next;
+         *     ListNode() : val(0), next(nullptr) {}
+         *     ListNode(int x) : val(x), next(nullptr) {}
+         *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+         * };
+         */
+        class Solution {
+        public:
+            ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
+                ListNode * head = NULL;
+                ListNode * ans = new ListNode(0);
+        
+                int ref = 0;
+        
+                int sum =0;
+                bool find = 1;
+                while(l1 != NULL || l2 != NULL || ref != 0){
+                    int data1 = 0;
+                    if (l1 != NULL){
+                        data1 = l1->val;
+                    }
+                    int data2 = 0;
+                    if (l2 != NULL){
+                        data2 = l2 -> val;
+                    }
+        
+                    sum =0;
+        
+                    sum = data1 + data2 + ref;
+        
+                    ListNode * ptr = new ListNode(sum % 10);
+        
+                    ref = sum / 10;
+                    if (find){
+                        head = ptr;
+                        find = 0;
+                    }
+                    ans -> next = ptr;
+                    ans = ptr; 
+                    if (l1 != NULL){
+                        l1 = l1 -> next;
+                    }
+                    //l1 = l1 -> next;
+                    if (l2 != NULL){
+                        l2 = l2 -> next;
+                    }
+                    
+                }
+        
+                
+                return head;
+            }
+        };
