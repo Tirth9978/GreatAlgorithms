@@ -1,0 +1,108 @@
+--> Given a binary matrix mat[][] of size n * m. Find the maximum area of a rectangle formed only of 1s in the given matrix.
+--> COde : 
+//{ Driver Code Starts
+#include <bits/stdc++.h>
+using namespace std;
+
+
+// } Driver Code Ends
+/*You are required to complete this method*/
+class Solution {
+  public:
+    
+    vector<int> nextSmaller(vector<int> arr){
+        stack<int> s;
+        s.push(-1);
+        vector<int> ans(arr.size());
+        
+        for (int i= arr.size()-1;i>=0;i--){
+            while(s.top()!=-1 && arr[s.top()] >= arr[i]){
+                s.pop();
+            }
+            ans[i] = s.top();
+            s.push(i);
+        }
+        return ans;
+    }
+    
+    vector<int> prevSmaller(vector<int> arr){
+        stack<int> s;
+        s.push(-1);
+        vector<int> ans(arr.size());
+        
+        for (int i=0;i<arr.size();i++){
+            while(s.top()!=-1 && arr[s.top()] >= arr[i]){
+                s.pop();
+            }
+            ans[i] = s.top();
+            
+            s.push(i);
+        }
+        return ans ;
+    }
+    
+    int largestArea(vector<int> arr){
+        int  n= arr.size();
+        
+        vector<int> next;
+        
+        next= nextSmaller(arr);
+        
+        vector<int> prev;
+        prev = prevSmaller(arr);
+        int area = INT_MIN;
+        for (int i=0;i<arr.size();i++){
+            int l = arr[i];
+            if (next[i] == -1){
+                next[i] = n;
+            }
+            
+            int b = next[i] - prev[i] - 1;
+            
+            area = max(l * b , area);
+        }
+        return area;
+    }
+    
+    
+    int maxArea(vector<vector<int>> &mat) {
+        
+        int area = largestArea(mat[0]);
+        
+        for (int i=1;i<mat.size();i++){
+            for (int j=0;j<mat[0].size();j++){
+                if (mat[i][j] != 0){
+                    mat[i][j] += mat[i-1][j];
+                }
+            }
+            area = max(area, largestArea(mat[i]));
+        }
+        return area;
+    }
+};
+
+//{ Driver Code Starts.
+
+int main() {
+    int T;
+    cin >> T;
+
+    while (T--) {
+        int n, m;
+        cin >> n >> m;
+        vector<vector<int>> mat(n, vector<int>(m));
+
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < m; j++) {
+                cin >> mat[i][j];
+            }
+        }
+        Solution obj;
+        cout << obj.maxArea(mat) << endl;
+
+        cout << "~"
+             << "\n";
+    }
+}
+
+// } Driver Code Ends
