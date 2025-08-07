@@ -25,11 +25,11 @@ To use this repository, follow these steps:
 
 1. ⬇️ Clone the repository:
    ```sh
-   git clone https://github.com/Tirth9978/Leetcode-problems-.git
+   https://github.com/Tirth9978/Data-Structure-And-Algorithms.git
    ```
 2. 📂 Navigate to the repository:
    ```sh
-   cd Leetcode-problems-
+   cd Data-Structure-And-Algorithms
    ```
 3. ✍️ Open any solution in your preferred code editor and run it. 🖥️
 
