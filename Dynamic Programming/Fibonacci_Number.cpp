@@ -7,8 +7,8 @@ int fb(int n , vector<int> & dp){
           return n;
      }
 
-     if (dp[n-1] != 0 && dp[n-2] != 0){
-          return dp[n-1] + dp[n-2];
+     if (dp[n] != -1){
+          return dp[n];
      }
 
      int ans = fb(n-1 , dp) + fb(n-2 ,dp);
@@ -20,7 +20,7 @@ int fb(int n , vector<int> & dp){
 int main(){
      int n;
      cin >> n;
-     vector<int> dp(n+1 , 0);
+     vector<int> dp(n+1 , -1);
 
      cout << fb(n , dp) << endl;
      return 0;
