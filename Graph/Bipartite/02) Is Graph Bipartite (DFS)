@@ -1,0 +1,28 @@
+class Solution {
+public:
+
+    void DFS(vector<vector<int>>& graph , vector<int> & visited ,int node , int color , bool & find ) {
+        if (visited[node] != -1 && visited[node] != color){
+            find = 0;
+        }
+        else {
+            visited[node] = color ;
+        }
+
+        for (int i=0;i<graph[node].size() ; i++) {
+            if (visited[graph[node][i]] == -1) {
+                DFS(graph , visited , graph[node][i] , !color , find);
+            }
+            else if (visited[graph[node][i]] == visited[node]) {
+                find = false ;
+            }
+        }
+        return ;
+    }
+    bool isBipartite(vector<vector<int>>& graph) {
+        bool find = true ;
+        vector<int> visited(graph.size() , -1);
+        DFS(graph , visited , 0 , 0 , find);
+        return find ; 
+    }
+};
