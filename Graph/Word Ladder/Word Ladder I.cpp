@@ -7,7 +7,7 @@ public:
         s.erase(beginWord);
         while (!q.empty()){
             string word = q.front().first;
-            int count = q.front().second;
+            i`nt count = q.front().second;
             q.pop();
 
             if (word == endWord) {
