@@ -14,19 +14,19 @@ vector<int> KMP(string s , string p){
     int n = s.size() ;
     int m = p.size() ;
 
-    auto prefixFunction= [&](string s) -> vector<int>  {
-        int n = s.size()-1;
-        vector<int> pi(n +1 , 0);
-        for (int i=2;i<=n;i++){
-            int j = pi[i-1];
-            while(j > 0 && s[i] != s[j]){
-                j = pi[j-1];
-            }
-            if (s[i] == s[j]) {
-                j ++ ;
-            }
+    auto prefixFunction = [&](const string &s) -> vector<int> {
+        int n = s.size();
+        vector<int> pi(n);
+    
+        for (int i = 1; i < n; i++) {
+            int j = pi[i - 1];
+            while (j > 0 && s[i] != s[j])
+                j = pi[j - 1];
+            if (s[i] == s[j])
+                j++;
             pi[i] = j;
         }
+    
         return pi;
     };
 
