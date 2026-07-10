@@ -5,10 +5,12 @@ using namespace std ;
 class DisjoinSet {
     vector<int> rank ;
     vector<int> parent;
+    vector<int> size;
 
 public: 
     DisjoinSet(int n) {
         rank.resize(n+1, 0);
+        size.resize(n+1, 1);
         parent.resize(n+1);
         for (int i=0;i<=n;i++) {
             parent[i] = i;
@@ -37,6 +39,22 @@ public:
         }
         return ;
     }
+
+    void unionBySize(int u,int v) {
+        int ult_u = findParent(u);
+        int ult_v = findParent(v);
+        if (ult_u == ult_v) return ;
+
+        if (size[ult_u] < size[ult_v]) {
+            parent[ult_u] = ult_v;
+            size[ult_v] += size[ult_u];
+        }
+        else {
+            parent[ult_v] = ult_u;
+            size[ult_u] += size[ult_v];
+        }
+    }
+
     bool isConnect(int u,int v){
         if (findParent(u) == findParent(v)) return 1;
         return 0;
