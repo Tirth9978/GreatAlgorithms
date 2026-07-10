@@ -55,6 +55,16 @@ public:
         }
     }
 
+    int countCompoentent() {
+        int count =0;
+        for (int i=0;i<=n;i++) {
+            if (parent[i] == i){
+                count ++ ;
+            }
+        }
+        return count ;
+    }
+
     bool isConnect(int u,int v){
         if (findParent(u) == findParent(v)) return 1;
         return 0;
